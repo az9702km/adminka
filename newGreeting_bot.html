@@ -67,16 +67,16 @@
                                 <a class="nav-link" href="viloyatlar.html"><i class="fas fa-map-marker-alt"></i>Viloyatlar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="oliygohlar.html"><i class="fas fa-university"></i>Oliygohlar</a>
+                                <a class="nav-link" href="oliygohlar.html"><i class="fas fa-university"></i>Oliygohlar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="savollar.html"><i class="far fa-question-circle"></i>So'rovnomalar</a>
+                                <a class="nav-link" href="savollar.html"><i class="fas fa-question-circle"></i>So'rovnomalar</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="living.html"><i class="fas fa-home"></i>Yashash joyi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="greeting_bot.html"><i class="fas fa-comment"></i>Bot kirish so'zi</a>
+                                <a class="nav-link active" href="greeting_bot.html"><i class="fas fa-comment"></i>Bot kirish so'zi</a>
                             </li>
                         </ul>
                     </div>
@@ -98,14 +98,13 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Oliygoh qo'shish </h2>
+                                <h2 class="pageheader-title">Bot kirish so'zi </h2>
                                 <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item"><a href="oliygohlar.html" class="breadcrumb-link">Oliygohlar</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Yangi Oliygoh</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Bot kirish so'zi</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -122,23 +121,23 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="card">
-                                    <h5 class="card-header">Yangi Oliygoh qo'shish</h5>
+                                    <h5 class="card-header">Bot kirish so'zi yaratish</h5>
                                     <div class="card-body">
-                                        <form id="new-region">
+                                        <form id="new-quiz">
                                             <div class="form-row">
-                                                <div class="form-group col-lg-12">
-                                                    <label for="univer" class="col-form-label">Oliygoh nomi (UZB)</label>
-                                                    <input id="univer" type="text" class="form-control">
+                                                <div class="form-group col-md-6">
+                                                    <label class="col-form-label" for="texteditor">Kirish matni (UZB) </label>
+                                                    <textarea class="form-control" id="texteditor" name="editordata" rows="2" placeholder="Write Descriptions"></textarea>
                                                 </div>
-                                                <div class="form-group col-lg-12">
-                                                    <label for="univer-ru" class="col-form-label">Oliygoh nomi (РУС)</label>
-                                                    <input id="univer-ru" type="text" class="form-control">
+                                                <div class="form-group col-md-6">
+                                                    <label class="col-form-label" for="texteditor-ru">Kirish matni (RUS)</label>
+                                                    <textarea class="form-control" id="texteditor-ru" name="editordata" rows="2" placeholder="Write Descriptions"></textarea>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer">                                        
-                                        <button type="submit" form="#new-region" class="btn btn-primary">Oliygoh qo'shish</button>
+                                        <button type="submit" form="#new-quiz" class="btn btn-primary">Kirish matni yaratish</button>
                                     </div>
                                 </div>
                             </div>
@@ -182,6 +181,45 @@
     <script src="assets/vendor/summernote/js/summernote-bs4.js"></script>
     <!-- main js -->
     <script src="assets/libs/js/main-js.js"></script>
+
+    <script>
+
+        if($("#texteditor").length) {
+            $('#texteditor').summernote({
+                height: 150
+            });
+        }
+
+        if($("#texteditor-ru").length) {
+            $('#texteditor-ru').summernote({
+                height: 150
+            });
+        }
+
+        if($("#new-opt").length) {
+            $("#new-opt").click(function(){
+                $str = $(".option-input").last().attr("id").replace(/[^0-9]/gi, '');
+                n = parseInt($str,10) + 1;
+                $(".answ-wrapper").append(`
+                                                <div class="row align-items-end">
+                                                    <div class="form-group col-lg-5">
+                                                        <label for="opt${n}" class="col-form-label">${n}-Javob matni</label>
+                                                        <input id="opt${n}" type="text" class="form-control option-input">
+                                                    </div>
+                                                    <div class="form-group col-lg-5">
+                                                        <label for="optru${n}" class="col-form-label">${n}-Javob matni rus</label>
+                                                        <input id="optru${n}" type="text" class="form-control option-input">
+                                                    </div>
+                                                    <div class="form-group col-lg-2">
+                                                        <button type="button" class="btn btn-remove btn-block btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                                    </div>
+                                                </div>`);
+            });
+        }
+        $(".answ-wrapper").on('click', '.btn-remove', function(){
+            $(this).parent().parent().remove();
+        });
+    </script>
 </body>
  
 </html>
