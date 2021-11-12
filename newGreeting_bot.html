@@ -76,7 +76,7 @@
                                 <a class="nav-link" href="living.html"><i class="fas fa-home"></i>Yashash joyi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="greeting_bot.html"><i class="fas fa-comment"></i>Bot kirish so'zi</a>
+                                <a class="nav-link active" href="greeting_bot.html"><i class="fas fa-sliders-h"></i>Bot sozlamalari</a>
                             </li>
                         </ul>
                     </div>
@@ -183,16 +183,61 @@
     <script src="assets/libs/js/main-js.js"></script>
 
     <script>
+        $.ajax({
+            url: 'https://api.github.com/emojis',
+            async: false 
+        }).then(function(data) {
+            window.emojis = Object.keys(data);
+            window.emojiUrls = data; 
+        });;
 
         if($("#texteditor").length) {
             $('#texteditor').summernote({
-                height: 150
+                height: 150,
+                hint: {                    
+                    match: /:([\-+\w]+)$/,
+                    search: function (keyword, callback) {
+                        callback($.grep(emojis, function (item) {
+                            return item.indexOf(keyword) === 0;
+                        }));
+                    },
+                    template: function (item) {
+                        var content = emojiUrls[item];
+                        return '<img src="' + content + '" width="20" /> :' + item + ':';
+                    },
+                    content: function (item) {
+                        var url = emojiUrls[item];
+                        if (url) {
+                            return $('<img />').attr('src', url).css('width', 20)[0];
+                        }
+                        return '';
+                    }
+                }
             });
         }
 
         if($("#texteditor-ru").length) {
             $('#texteditor-ru').summernote({
-                height: 150
+                height: 150,
+                hint: {                    
+                    match: /:([\-+\w]+)$/,
+                    search: function (keyword, callback) {
+                        callback($.grep(emojis, function (item) {
+                            return item.indexOf(keyword) === 0;
+                        }));
+                    },
+                    template: function (item) {
+                        var content = emojiUrls[item];
+                        return '<img src="' + content + '" width="20" /> :' + item + ':';
+                    },
+                    content: function (item) {
+                        var url = emojiUrls[item];
+                        if (url) {
+                            return $('<img />').attr('src', url).css('width', 20)[0];
+                        }
+                        return '';
+                    }
+                }
             });
         }
 
@@ -219,6 +264,9 @@
         $(".answ-wrapper").on('click', '.btn-remove', function(){
             $(this).parent().parent().remove();
         });
+        // if($("#new-opt").length){
+
+        // }
     </script>
 </body>
  

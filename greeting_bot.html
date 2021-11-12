@@ -76,7 +76,7 @@
                                 <a class="nav-link" href="living.html"><i class="fas fa-home"></i>Yashash joyi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="greeting_bot.html"><i class="fas fa-comment"></i>Bot kirish so'zi</a>
+                                <a class="nav-link active" href="greeting_bot.html"><i class="fas fa-sliders-h"></i>Bot sozlamalari</a>
                             </li>
                         </ul>
                     </div>
@@ -137,12 +137,36 @@
                                     <div class="card-header d-flex">
                                         <h4 class="card-header-title">Telegramda kirishdagi yozuv (Yozuv qo'yilganidan so'nggi holati)</h4>
                                     </div>
-                                    <div class="card-body py-5">
-                                        <p class="text-dark mb-4 h2">Assalomu alaykum telegram botiga hush kelibsiz.(UZB)</p>
-                                        <p class="text-dark h2">Добро пожаловать в наш телеграм бот. (РУС)</p>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p class="h5">Uzb</p>
+                                                <p class="text-dark">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas vel repellendus mollitia harum officia, dolorem sapiente minima praesentium tempore, totam molestias omnis cupiditate quisquam blanditiis numquam, distinctio veniam eius neque..</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="h5">Rus</p>
+                                                <p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia dolorum illum vitae quae quidem, nihil quam perferendis ipsum corrupti itaque ullam nostrum ea mollitia magni modi! Maiores facere eos animi.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="card-footer">
                                         <a href="editGreeting_bot.html" class="btn btn-primary">O'zgartirish</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header d-flex">
+                                        <h4 class="card-header-title">Telegram bot tillari</h4>
+                                    </div>
+                                    <div class="card-body py-5">
+                                        <div class="d-flex align-items-center justify-content-around">
+                                            <button class="btn tg-btn">O'zbel tili</button>
+                                            <button class="btn tg-btn">Русский язык</button>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href="#" data-toggle="modal" data-target="#langChange" class="btn btn-primary">O'zgartirish</a>
                                     </div>
                                 </div>
                             </div>
@@ -172,6 +196,35 @@
         <!-- ============================================================== -->
         <!-- end wrapper  -->
         <!-- ============================================================== -->
+        <div class="modal fade" id="langChange" tabindex="-1" role="dialog" aria-labelledby="langChangeLabel"
+            aria-hidden="true" style="display: none;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="langChangeLabel">Bot tilini tanlash</h5>
+                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="emojiInputUz" class="col-form-label">Uzbek tili</label>
+                                <input id="emojiInputUz" value="O'zbel tili" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="emojiInputRu" class="col-form-label">Rus tili</label>
+                                <input id="emojiInputRu" value="Русский язык" type="text" class="form-control">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</a>
+                        <a href="#" class="btn btn-primary">Saqlash</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
@@ -188,6 +241,10 @@
     <script src="assets/libs/js/main-js.js"></script>
 
     <script>
+
+        if($("#emojiInputUz").length){
+            $('#emojiInputUz').emoji({place: 'after'});
+        }
 
         if($("#texteditor").length) {
             $('#texteditor').summernote({

@@ -49,3 +49,16 @@
 .card-group__item .card{
   flex-grow: 1;
 }
+
+.tg-btn{  
+  background: #f0f4f7;
+  color: #3a6d99;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
